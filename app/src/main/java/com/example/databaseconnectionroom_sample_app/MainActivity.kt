@@ -28,8 +28,9 @@ class MainActivity : AppCompatActivity() {
         }
         btndeleteAll.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
-deleteAll()
-        }}
+                deleteAll()
+            }
+        }
 
         init()
     }
@@ -43,19 +44,47 @@ deleteAll()
     }
 
     fun testDB() {
-
+//insert
         Log.i("LNBTI", "inseting...")
         val book1 = Book(1, "java", "sam")
         val book2 = Book(2, "cam", "joe")
+        bookDao.apply {
+            insertBook(book1)
+            insertBook(book2)
+            insertBook(Book(4, "jhhk", "ewf"))
+        }
 
 
-        bookDao.insertBook(book1)
-        bookDao.insertBook(book2)
-        bookDao.insertBook(Book(4, "jhhk", "ewf"))
+
+        Log.i("LNBTI", "Reading..")
+        val books = bookDao.getAllBooks()
+        for (book in books)
+            Log.i("LNBTI", "id :${book.id}name:${book.name}author : ${book.author}")
+
+        //update
+
+        Log.i("LNBTI", "updating3...")
+        bookDao.updateBook(Book(1, "java_version2.", "sam>>>"))
+
+        //read/updated quary
+
+        Log.i("LNBTI", "Reading..")
+        val booksupdated = bookDao.getAllBooks()
+        for (book in booksupdated)
+            Log.i("LNBTI", "id :${book.id}name:${book.name}author : ${book.author}")
+
+//deletebook
+        Log.i("LNBTI", "updating3...")
+        bookDao.deleteBook(Book(1, "", ""))
+        Log.i("LNBTI", "Deleting..")
+        val bookAfterdeleted = bookDao.getAllBooks()
+        for (book in bookAfterdeleted)
+            Log.i("LNBTI", "id :${book.id}name:${book.name}author : ${book.author}")
     }
 
-private fun deleteAll(){
 
-    bookDao.deleteAllBooks()
-}
+    private fun deleteAll() {
+
+        bookDao.deleteAllBooks()
+    }
 }
