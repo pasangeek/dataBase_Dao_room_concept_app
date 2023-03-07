@@ -37,10 +37,12 @@ class MainActivity : AppCompatActivity() {
 
     fun init() {
 
-        val db =
+        /*val db =
             Room.databaseBuilder(applicationContext, BookDataBase::class.java, "book_database")
                 .fallbackToDestructiveMigration()    .build()
-        bookDao = db.bookDao()
+        bookDao = db.bookDao()*/
+
+        bookDao=BookDataBase.getInstance(applicationContext).bookDao()
     }
 
     fun testDB() {
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         bookDao.apply {
             insertBook(book1)
             insertBook(book2)
-            insertBook(Book(4, "jhhk", "ewf"))
+            insertBook(Book(0, "jhhk", "ewf"))
         }
 
 
@@ -74,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             Log.i("LNBTI", "id :${book.id}name:${book.name}author : ${book.author}")
 
 //deletebook
-        Log.i("LNBTI", "updating3...")
+        Log.i("LNBTI", "updating4...")
         bookDao.deleteBook(Book(1, "", ""))
         Log.i("LNBTI", "Deleting..")
         val bookAfterdeleted = bookDao.getAllBooks()
