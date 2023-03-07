@@ -12,7 +12,8 @@ interface BookDao{
 
     @Insert
     fun insertBook(book: Book)
-
+//(select * from tablename)
+    //(tablename:String)
     @Query("SELECT * FROM books_table")
     fun getAllBooks(): List<Book>
 

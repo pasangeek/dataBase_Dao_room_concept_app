@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class Book(
 
 
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     var id: Int,
     @ColumnInfo(name = "books_name")
     var name: String,

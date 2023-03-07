@@ -39,15 +39,15 @@ class MainActivity : AppCompatActivity() {
 
         val db =
             Room.databaseBuilder(applicationContext, BookDataBase::class.java, "book_database")
-                .build()
+                .fallbackToDestructiveMigration()    .build()
         bookDao = db.bookDao()
     }
 
     fun testDB() {
 //insert
         Log.i("LNBTI", "inseting...")
-        val book1 = Book(1, "java", "sam")
-        val book2 = Book(2, "cam", "joe")
+        val book1 = Book(0, "java", "sam")
+        val book2 = Book(0, "cam", "joe")
         bookDao.apply {
             insertBook(book1)
             insertBook(book2)
