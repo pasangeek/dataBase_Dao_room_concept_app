@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     fun testDB() {
 
         //RAW QUARY
-val getBooksQuery= SimpleSQLiteQuery("SELECT * FROM")
+//val getBooksQuery= SimpleSQLiteQuery("SELECT * FROM")
 
 
 //insert

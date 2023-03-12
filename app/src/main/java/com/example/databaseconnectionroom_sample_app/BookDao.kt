@@ -18,11 +18,11 @@ interface BookDao{
     //(tablename:String)
     //@Query("SELECT * FROM books_table")
 @Query("SELECT * FROM ${Book.TABLE_NAME}")//inject table name as parameter
-  //  fun getAllBooks(): List<Book>
+   fun getAllBooks(): List<Book>
 
 //Raw quary
-@RawQuery
-fun getAllBooks(quary:SimpleSQLiteQuery): List<Book>
+//@RawQuery
+//fun getAllBooks(quary:SimpleSQLiteQuery): List<Book>
     //SET book_name = "DEF".author_name = "sam"
     //WHERE id = 2
     //@Query("UPDATE books_table SET books_name = :name WHERE author_name AKD")
