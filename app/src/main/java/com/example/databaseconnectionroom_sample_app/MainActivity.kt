@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+import androidx.sqlite.db.SimpleSQLiteQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -46,6 +47,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun testDB() {
+
+        //RAW QUARY
+val getBooksQuery= SimpleSQLiteQuery("SELECT * FROM")
+
+
 //insert
         Log.i("LNBTI", "inseting...")
         val book1 = Book( "java", "sam")
