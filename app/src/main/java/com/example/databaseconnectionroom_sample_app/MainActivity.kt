@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+import androidx.sqlite.db.SimpleSQLiteQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -46,14 +47,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun testDB() {
+
+        //RAW QUARY
+//val getBooksQuery= SimpleSQLiteQuery("SELECT * FROM")
+
+
 //insert
         Log.i("LNBTI", "inseting...")
-        val book1 = Book(0, "java", "sam")
-        val book2 = Book(0, "cam", "joe")
+        val book1 = Book( "java", "sam")
+        val book2 = Book( "cam", "joe")
         bookDao.apply {
             insertBook(book1)
             insertBook(book2)
-            insertBook(Book(0, "jhhk", "ewf"))
+            insertBook(Book( "jhhk", "ewf"))
         }
 
 
@@ -66,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         //update
 
         Log.i("LNBTI", "updating3...")
-        bookDao.updateBook(Book(1, "java_version2.", "sam>>>"))
+        bookDao.updateBook(Book( "java_version2.", "sam>>>"))
 
         //read/updated quary
 
@@ -77,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
 //deletebook
         Log.i("LNBTI", "updating4...")
-        bookDao.deleteBook(Book(1, "", ""))
+        bookDao.deleteBook(Book( "", ""))
         Log.i("LNBTI", "Deleting..")
         val bookAfterdeleted = bookDao.getAllBooks()
         for (book in bookAfterdeleted)

@@ -8,11 +8,17 @@ import androidx.room.PrimaryKey
 data class Book(
 
 
-    @PrimaryKey(autoGenerate = true)
-    var id: Int,
     @ColumnInfo(name = "books_name")
     var name: String,
     @ColumnInfo(name = "authors_name")
-    var author: String
+    var author: String,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
 
-)
+) {
+
+    companion object {
+        const val TABLE_NAME = "books_table"
+    }
+
+}
