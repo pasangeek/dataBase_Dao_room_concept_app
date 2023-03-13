@@ -2,6 +2,8 @@ package com.example.databaseconnectionroom_sample_app
 
 import android.content.Context
 import androidx.room.*
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
@@ -24,7 +26,8 @@ abstract class BookDataBase() : RoomDatabase() {
                         context.applicationContext,
                         BookDataBase::class.java, "book_database"
 
-                    ).fallbackToDestructiveMigration()
+                    )//.fallbackToDestructiveMigration()
+                        .addMigrations(MIGRATION_1_2)
                         .build()
                         .also {
                             INSTANCE = it
@@ -32,6 +35,18 @@ abstract class BookDataBase() : RoomDatabase() {
                 }
 
 
+
+        }
+
+        private val MIGRATION_1_2 = object :Migration(1,2){
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE books_new RENAME TO Books_Table")
+            }
+            private val MIGRATION_2_3 = object :Migration(2,3){
+                override fun migrate(database: SupportSQLiteDatabase) {
+                    database.execSQL("ALTER TABLE books_new RENAME TO Books_Table")
+                }
+            }
         }
     }
 }
